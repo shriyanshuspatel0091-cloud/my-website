@@ -263,7 +263,7 @@ items:[
 };
 
 
-const container=document.getElementById("productSections");
+const id = new URLSearchParams(window.location.search).get("img") || 1;
 
 for(const id in categories){
 
@@ -293,3 +293,4 @@ window.open("product.html?img="+img,"_blank");
 
 </body>
 </html>
+
