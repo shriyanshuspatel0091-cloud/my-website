@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Product Details | Patel & Son's Enterprises</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    font-family:Poppins,sans-serif;
+    background:linear-gradient(135deg,#e3f2fd,#ffffff);
+    margin:0;
+    padding:40px;
+}
+
+.box{
+    max-width:950px;
+    margin:auto;
+    background:white;
+    padding:35px;
+    border-radius:14px;
+    box-shadow:0 8px 20px rgba(0,0,0,.2);
+    display:flex;
+    flex-wrap:wrap;
+    gap:30px;
+    align-items:center;
+}
+
+img{width:320px;object-fit:contain;}
+
+.info{flex:1;}
+
+h2{color:#0d47a1;margin-top:0;}
+
+p{line-height:1.6;}
+
+.btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:10px 18px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+.back{
+    display:inline-block;
+    margin-top:10px;
+    text-decoration:none;
+    color:#0d47a1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <img id="img">
+    <div class="info">
+        <h2 id="title"></h2>
+        <p id="desc"></p>
+        <p id="uses"></p>
+        <p id="sizes"></p>
+
+        <a id="wa" class="btn">Enquire on WhatsApp</a><br>
+        <a href="index.html" class="back">⬅ Back to Home</a>
+    </div>
+</div>
+
+<script>
+
+/* ===================================================
+   COMPLETE PRODUCT DATABASE (OLD + NEW ALL INCLUDED)
+   =================================================== */
+
+const products = {
+
+/* ---------- STATIONERY ---------- */
+
+2:{name:"JK Easy Copier Paper – 70 GSM",desc:"Premium smooth A4 copier paper with high brightness.",uses:"Office printing & photocopy.",sizes:"A4 / A3 packs"},
+5:{name:"JK Eco Rice Paper – 70 GSM",desc:"Economical daily-use copier paper.",uses:"Bulk office printing.",sizes:"A4 packs"},
+8:{name:"Box File",desc:"Hard board office file with clip.",uses:"Document storage.",sizes:"A4/Legal"},
+9:{name:"Spring File",desc:"Flexible clip file.",uses:"Daily paperwork.",sizes:"A4"},
+10:{name:"Register",desc:"Strong binding ruled register.",uses:"Accounts & writing.",sizes:"100/200/300 pages"},
+11:{name:"Calculator",desc:"Desktop calculator with big display.",uses:"Billing & calculations.",sizes:"Standard"},
+12:{name:"Permanent Marker",desc:"Waterproof long lasting marker.",uses:"Carton & surface marking.",sizes:"Blue/Black/Red"},
+13:{name:"Stapler, Pins & Punching Machine",desc:"Heavy duty stapler & accessories.",uses:"Paper binding.",sizes:"Multiple"},
+
+58:{name:"Paper Cutting Blade SDI",desc:"Sharp stainless steel blades.",uses:"Paper & carton cutting.",sizes:"Standard"},
+59:{name:"Paint Marker",desc:"Oil based industrial marker.",uses:"Metal/plastic marking.",sizes:"Multi colors"},
+62:{name:"Printer Ink Cartridge",desc:"High quality compatible ink.",uses:"Laser/Inkjet printing.",sizes:"All models"},
+63:{name:"Paper Chip",desc:"Hard paper boards for files.",uses:"File & packaging use.",sizes:"Custom"},
+64:{name:"Ball Pen",desc:"Smooth writing pen.",uses:"Office writing.",sizes:"Blue/Black/Red"},
+65:{name:"White Board",desc:"Magnetic smooth writing whiteboard.",uses:"Office & school use.",sizes:"2x3 / 3x4 / 4x6 ft"},
+66:{name:"Custom Challan Book",desc:"Printed invoice & challan books.",uses:"Billing & transport.",sizes:"Custom print"},
+67:{name:"Custom Stamp",desc:"Company rubber stamps.",uses:"Official stamping.",sizes:"Round/Rectangular"},
+68:{name:"Sheet Protector",desc:"Transparent document sleeves.",uses:"File protection.",sizes:"A4 pack"},
+69:{name:"AA & AAA Battery Cell",desc:"Long life alkaline batteries.",uses:"Electronic devices.",sizes:"AA/AAA"},
+70:{name:"Cartage",desc:"Packing support materials.",uses:"Industrial packing.",sizes:"Multiple"},
+71:{name:"White Choke",desc:"Dust free chalk sticks.",uses:"Board writing.",sizes:"Box"},
+
+/* ---------- PACKING ---------- */
+
+14:{name:"EPE Foam Roll",desc:"Soft cushioning foam.",uses:"Fragile protection.",sizes:"1-5mm"},
+16:{name:"Colored Foam Roll",desc:"Colored protective foam.",uses:"Decorative packing.",sizes:"Various"},
+17:{name:"Bubble Roll",desc:"Air bubble sheet.",uses:"Courier packaging.",sizes:"Multiple"},
+18:{name:"Blue Bubble Roll",desc:"Heavy duty bubble roll.",uses:"Industrial packing.",sizes:"Thick"},
+20:{name:"Foam Sheets",desc:"Lightweight sheets.",uses:"Wrapping.",sizes:"Various"},
+21:{name:"Foam Bundle",desc:"Bulk foam bundles.",uses:"Large packaging.",sizes:"Bulk"},
+22:{name:"Black Foam Sheet",desc:"High density sheet.",uses:"Machine protection.",sizes:"Multi thickness"},
+23:{name:"Stretch Film",desc:"Elastic wrap film.",uses:"Pallet wrapping.",sizes:"Manual/Machine"},
+24:{name:"LDPE Roll",desc:"Moisture proof plastic roll.",uses:"Wrapping.",sizes:"Custom"},
+25:{name:"PP Roll",desc:"Strong PP sheet roll.",uses:"Industrial wrapping.",sizes:"Heavy duty"},
+26:{name:"Poly Bags",desc:"Transparent poly bags.",uses:"Small packing.",sizes:"All sizes"},
+27:{name:"PP Strap Roll",desc:"High tensile strap roll.",uses:"Box binding.",sizes:"12/15/19mm"},
+28:{name:"GI Clips",desc:"Strap locking clips.",uses:"Securing straps.",sizes:"Standard"},
+60:{name:"Corrugated Box",desc:"Strong cartons.",uses:"Transport packaging.",sizes:"Custom"},
+61:{name:"Customised Carry Bag",desc:"Printed carry bags.",uses:"Retail use.",sizes:"Paper/Plastic"},
+
+/* ---------- SAFETY ---------- */
+
+29:{name:"Safety Shoes",desc:"Steel toe safety shoes.",uses:"Worker protection.",sizes:"All"},
+30:{name:"Helmet",desc:"Impact resistant helmet.",uses:"Construction safety.",sizes:"Adjustable"},
+31:{name:"Leather Gloves",desc:"Heavy leather gloves.",uses:"Welding/handling.",sizes:"Free"},
+32:{name:"Ear Plug",desc:"Noise reduction ear plugs.",uses:"High noise areas.",sizes:"Reusable"},
+33:{name:"Safety Goggles",desc:"Anti-fog protective glasses.",uses:"Eye protection.",sizes:"Universal"},
+34:{name:"Mask",desc:"Dust safety mask.",uses:"Pollution protection.",sizes:"Disposable/Re-usable"},
+72:{name:"Leg Guard",desc:"Leg safety guard.",uses:"Welding protection.",sizes:"Adjustable"},
+73:{name:"Hand Sleeve",desc:"Arm safety sleeve.",uses:"Cut protection.",sizes:"Free"},
+74:{name:"Apron",desc:"Protective apron.",uses:"Workshop safety.",sizes:"PVC/Leather"},
+75:{name:"Caution Tape",desc:"Warning tape.",uses:"Area marking.",sizes:"Roll"},
+76:{name:"Reflective Jacket",desc:"High visibility jacket.",uses:"Road safety.",sizes:"S-XXL"},
+77:{name:"PVC Gum Boots",desc:"Waterproof boots.",uses:"Chemical areas.",sizes:"All"},
+78:{name:"Fire Extinguisher",desc:"Portable extinguisher.",uses:"Fire safety.",sizes:"1-5kg"},
+79:{name:"Welding Mask",desc:"Face welding shield.",uses:"Eye protection.",sizes:"Standard"},
+80:{name:"Rope",desc:"Strong nylon rope.",uses:"Tying/lifting.",sizes:"Various"},
+
+/* ---------- TAPES ---------- */
+
+35:{name:"White BOPP Tape",desc:"Transparent packing tape.",uses:"Carton sealing.",sizes:"2/3 inch"},
+36:{name:"Brown BOPP Tape",desc:"Brown packing tape.",uses:"Box sealing.",sizes:"Various"},
+37:{name:"Masking Tape",desc:"Paper masking tape.",uses:"Painting work.",sizes:"Various"},
+38:{name:"Double Sided Tape",desc:"Adhesive both sides.",uses:"Mounting.",sizes:"Various"},
+39:{name:"Reflective Tape",desc:"High visibility tape.",uses:"Safety marking.",sizes:"Red/Yellow"},
+40:{name:"Green Fineline Tape",desc:"Fine edge tape.",uses:"Precision painting.",sizes:"Thin"},
+41:{name:"Electrical Tape",desc:"PVC insulation tape.",uses:"Wire insulation.",sizes:"Colors"},
+81:{name:"Aluminium Foil Tape",desc:"Heat resistant foil tape.",uses:"HVAC use.",sizes:"Standard"},
+82:{name:"Waterproofing Tape",desc:"Leak proof tape.",uses:"Roof/pipe repair.",sizes:"Heavy duty"},
+83:{name:"Non Woven Tape",desc:"Fabric adhesive tape.",uses:"Repair/binding.",sizes:"Various"},
+
+/* ---------- ELECTRICAL ---------- */
+
+42:{name:"Cotton Waste",desc:"Cleaning cotton cloth.",uses:"Machine cleaning.",sizes:"Bulk"},
+43:{name:"Hand Gloves",desc:"General gloves.",uses:"Hand protection.",sizes:"All"},
+44:{name:"Cutting Wheel",desc:"Metal cutting wheel.",uses:"Grinding/cutting.",sizes:"4/5 inch"},
+45:{name:"Sanding Paper",desc:"Finishing paper.",uses:"Polishing.",sizes:"Various grit"},
+46:{name:"Connector",desc:"Electrical connectors.",uses:"Wire joints.",sizes:"Multiple"},
+47:{name:"PVC Sleeve",desc:"Insulation sleeve.",uses:"Wire protection.",sizes:"Various"},
+48:{name:"Oil Paint",desc:"Industrial oil paint.",uses:"Metal painting.",sizes:"1L/5L"},
+49:{name:"Water Tank",desc:"Plastic tank.",uses:"Water storage.",sizes:"500L-2000L"},
+50:{name:"CPVC Pipe",desc:"Hot water pipes.",uses:"Plumbing.",sizes:"Standard"},
+51:{name:"Pipe Fittings",desc:"CPVC fittings.",uses:"Pipe joints.",sizes:"All"},
+52:{name:"Coupler",desc:"Pipe coupler.",uses:"Pipe joining.",sizes:"Various"},
+53:{name:"Solvent",desc:"Pipe solvent cement.",uses:"Pipe fixing.",sizes:"Standard"},
+54:{name:"Electric Cable",desc:"Copper cable.",uses:"Power wiring.",sizes:"All gauges"},
+55:{name:"MCB",desc:"Mini circuit breaker.",uses:"Overload protection.",sizes:"6A-63A"},
+56:{name:"LAN Cable",desc:"Network cable.",uses:"Internet wiring.",sizes:"Cat5/Cat6"},
+57:{name:"LED Light",desc:"Energy efficient lights.",uses:"Lighting.",sizes:"Various wattage"}
+
+};
+
+/* ---------- LOAD ---------- */
+
+const id = new URLSearchParams(window.location.search).get("img");
+
+document.getElementById("img").src = "images/image_"+id+".jpeg";
+
+const p = products[id];
+
+if(p){
+document.getElementById("title").innerText = p.name;
+document.getElementById("desc").innerText = p.desc;
+document.getElementById("uses").innerText = "Uses: " + p.uses;
+document.getElementById("sizes").innerText = "Available: " + p.sizes;
+
+document.getElementById("wa").href =
+"https://wa.me/919770269513?text=Hello, I want details about "+p.name;
+}
+
+</script>
+
+</body>
+</html>
